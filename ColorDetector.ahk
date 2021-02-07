@@ -7,8 +7,10 @@ flag := !flag
 if flag
     SetTimer, ShowToolTip, 50
 Else
+{
     SetTimer, ShowToolTip, Off
     ToolTip
+}
 Return
 
 End::
