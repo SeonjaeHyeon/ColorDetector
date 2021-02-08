@@ -2,6 +2,9 @@
 SendMode Input
 SetWorkingDir, %A_ScriptDir%
 
+color := ""
+flag := False
+
 F1::
 flag := !flag
 if flag
@@ -13,6 +16,13 @@ Else
 }
 Return
 
+F3::
+if flag
+{
+    Clipboard := color
+}
+Return
+
 End::
 ExitApp
 Return
@@ -20,5 +30,6 @@ Return
 ShowToolTip:
 MouseGetPos, posX, posY
 PixelGetColor, color, % posX, posY, RGB
-ToolTip, % Format("#{:X}", color), posX + 10, posY + 10
+color := Format("#{:X}", color)
+ToolTip, % color, posX + 10, posY + 10
 Return
