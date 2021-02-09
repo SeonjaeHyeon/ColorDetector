@@ -12,6 +12,7 @@ if flag
 Else
 {
     SetTimer, ShowToolTip, Off
+    Gui, Hide
     ToolTip
 }
 Return
@@ -27,9 +28,16 @@ End::
 ExitApp
 Return
 
+ShowPreviewGui:
+Gui, +AlwaysOnTop -SysMenu
+Gui, Color, %color%
+Gui, Show, w50 h50, Preview
+Return
+
 ShowToolTip:
 MouseGetPos, posX, posY
 PixelGetColor, color, % posX, posY, RGB
+Gosub, ShowPreviewGui
 color := Format("#{:X}", color)
 ToolTip, % color, posX + 10, posY + 10
 Return
