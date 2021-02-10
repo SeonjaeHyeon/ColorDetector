@@ -4,17 +4,10 @@ SetWorkingDir, %A_ScriptDir%
 
 color := ""
 flag := False
+SetTimer, Control, 50
 
 F1::
 flag := !flag
-if flag
-    SetTimer, ShowToolTip, 50
-Else
-{
-    SetTimer, ShowToolTip, Off
-    Gui, Hide
-    ToolTip
-}
 Return
 
 F3::
@@ -26,6 +19,18 @@ Return
 
 End::
 ExitApp
+Return
+
+Control:
+If (flag)
+{
+    Gosub, ShowToolTip
+}
+Else
+{
+    Gui, Hide
+    ToolTip
+}
 Return
 
 ShowPreviewGui:
