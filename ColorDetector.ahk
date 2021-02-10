@@ -4,10 +4,18 @@ SetWorkingDir, %A_ScriptDir%
 
 color := ""
 flag := False
+
+Gui, +AlwaysOnTop -SysMenu
+Gui, Show, w50 h50 Hide, Preview
+
 SetTimer, Control, 50
+Return
 
 F1::
-flag := !flag
+If (flag := !flag)
+{
+    Gui, Show
+}
 Return
 
 F3::
@@ -24,7 +32,7 @@ Return
 Control:
 If (flag)
 {
-    Gosub, ShowToolTip
+    Gosub, ShowColor
 }
 Else
 {
@@ -33,16 +41,10 @@ Else
 }
 Return
 
-ShowPreviewGui:
-Gui, +AlwaysOnTop -SysMenu
-Gui, Color, %color%
-Gui, Show, w50 h50, Preview
-Return
-
-ShowToolTip:
+ShowColor:
 MouseGetPos, posX, posY
 PixelGetColor, color, % posX, posY, RGB
-Gosub, ShowPreviewGui
+Gui, Color, %color%
 color := Format("#{:X}", color)
 ToolTip, % color, posX + 10, posY + 10
 Return
