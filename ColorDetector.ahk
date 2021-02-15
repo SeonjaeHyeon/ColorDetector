@@ -4,6 +4,7 @@ SetWorkingDir, %A_ScriptDir%
 
 color := ""
 flag := False
+flag2 := True
 
 Gui, +AlwaysOnTop -SysMenu
 Gui, Show, w50 h50 Hide, Preview
@@ -22,6 +23,13 @@ F3::
 if flag
 {
     Clipboard := color
+}
+Return
+
+F4::
+If (flag)
+{
+    Gui, % (flag2 := !flag2) ? "Show" : "Hide"
 }
 Return
 
